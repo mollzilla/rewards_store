@@ -1,0 +1,64 @@
+.product-card {
+  @include behave-vertical;
+  justify-content: flex-end;
+  background-color: #572EE5;
+  height: 276px;
+  width: 276px;
+
+  h4 {
+    @include word-bundle(1rem, $light-gray-font,400, 1.256875rem);
+    width: 100%;
+    text-align: left;
+    justify-self: left;
+  }
+
+  h3  {
+    @include word-bundle(1.125rem, $dark-gray-font, 400, 1.414375rem);
+  }
+}
+
+.text-box {
+  @include behave-vertical;
+  align-items: flex-start;
+  width: 82.6%;
+  padding-top: 19px;
+  padding-bottom: 16px;
+  margin-top: 4px;
+  border-top: 1px solid $border-color;
+}
+
+.product-img {
+  background-image: url("https://place-puppy.com/150x150");
+  height: 150px;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  width: 150px;
+  // width: 100%;
+  overflow: hidden;
+
+  &:hover {
+    .overlay {
+      transform: translate(0,0);
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
+.overlay {
+  display: none;
+  @include right-on-top;
+  height: 100%;
+  width: 100%;
+  background-color: transparentize(#572EE5, .3);
+  transform: translate(-100%, -100%);
+  opacity: 0;
+  transition: transform .4s ease-in-out, opacity .6s ease-in-out;
+}
+
