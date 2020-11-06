@@ -1,9 +1,11 @@
 .product-card {
   @include behave-vertical;
+  position: relative;
   justify-content: flex-end;
-  background-color: #572EE5;
+  // background-color: #572EE5;
   height: 276px;
   width: 276px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 
   h4 {
     @include word-bundle(1rem, $light-gray-font,400, 1.256875rem);
@@ -15,6 +17,13 @@
   h3  {
     @include word-bundle(1.125rem, $dark-gray-font, 400, 1.414375rem);
   }
+}
+
+.buy-icon {
+  height: 42px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 .text-box {
@@ -34,7 +43,6 @@
   background-size: cover;
   position: relative;
   width: 150px;
-  // width: 100%;
   overflow: hidden;
 
   &:hover {
@@ -42,12 +50,6 @@
       transform: translate(0,0);
       opacity: 1;
     }
-  }
-
-  &::before {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
   }
 }
 

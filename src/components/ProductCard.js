@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Overlay from './Overlay'
 
+import buyIcon from "../assets/icons/buy-blue.svg";
 
 function ProductCard() {
 
@@ -8,6 +9,7 @@ function ProductCard() {
 
   return(
     <div className="product-card">
+      <img src={buyIcon} alt="buy-icon" className="buy-icon" />
       <div className="product-img">
 
       </div>

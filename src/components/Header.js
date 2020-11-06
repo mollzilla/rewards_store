@@ -5,7 +5,7 @@ function Header() {
 
   return(
     <>
-      <div>
+      <div className="header">
         <h2>Electronics</h2>
       </div>
     </>
