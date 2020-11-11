@@ -2,16 +2,13 @@
   @include behave-vertical;
   position: relative;
   justify-content: flex-end;
-  // background-color: #572EE5;
+  background-color: #FFF;
   height: 276px;
   width: 276px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 
   h4 {
     @include word-bundle(1rem, $light-gray-font,400, 1.256875rem);
-    width: 100%;
-    text-align: left;
-    justify-self: left;
   }
 
   h3  {

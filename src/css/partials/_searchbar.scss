@@ -1,0 +1,51 @@
+.search-bar, .footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin: 0 auto;
+  height: 150px;
+  width: 1176px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid $border-color;
+
+  h4 {
+    @include word-bundle(1.5rem, $dark-gray-font, 400, 3rem);
+    padding-right: 24px;
+  }
+
+.sort {
+  border-left: 1px solid #D9D9D9;
+}
+
+.sort, button {
+  @include word-bundle(1.5rem, $light-gray-font, 400, 3rem);
+  letter-spacing: -0.15px;
+  padding-left: 24px;
+}
+
+button {
+  height: 48px;
+  padding: 1px 24px;
+  background-color: $light-gray-background;
+  border: 0;
+  border-radius: 20.5px;
+  margin-left: 24px;
+  &:hover {
+    background-color: $colored-background;
+    color: #FFF;
+  }
+}
+  
+buttons  {
+    @include behave-horizontal;
+    
+  }
+
+  .next-page {
+    justify-self: flex-end;
+  }
+}
+
+.footer {
+  margin-bottom: 74px;
+}

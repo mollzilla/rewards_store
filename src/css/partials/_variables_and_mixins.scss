@@ -6,6 +6,9 @@ $normal-font: "Source Sans Pro";
 $border-color: #D9D9D9;
 $light-gray-font: #A3A3A3;
 $dark-gray-font: #616161;
+$colored-background: #0AD4FA; 
+$light-gray-background: #EDEDED;
+
 
 @mixin behave-vertical {
   display:flex;
