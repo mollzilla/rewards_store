@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/rewards_store/static/css/main.5f9627e7.chunk.css",
+    "main.js": "/rewards_store/static/js/main.0f00865e.chunk.js",
+    "main.js.map": "/rewards_store/static/js/main.0f00865e.chunk.js.map",
+    "runtime-main.js": "/rewards_store/static/js/runtime-main.4782d8a7.js",
+    "runtime-main.js.map": "/rewards_store/static/js/runtime-main.4782d8a7.js.map",
+    "static/js/2.c758a59c.chunk.js": "/rewards_store/static/js/2.c758a59c.chunk.js",
+    "static/js/2.c758a59c.chunk.js.map": "/rewards_store/static/js/2.c758a59c.chunk.js.map",
+    "static/js/3.320ba21e.chunk.js": "/rewards_store/static/js/3.320ba21e.chunk.js",
+    "static/js/3.320ba21e.chunk.js.map": "/rewards_store/static/js/3.320ba21e.chunk.js.map",
+    "index.html": "/rewards_store/index.html",
+    "static/css/main.5f9627e7.chunk.css.map": "/rewards_store/static/css/main.5f9627e7.chunk.css.map",
+    "static/js/2.c758a59c.chunk.js.LICENSE.txt": "/rewards_store/static/js/2.c758a59c.chunk.js.LICENSE.txt",
+    "static/media/buy-blue.c5c4f01c.svg": "/rewards_store/static/media/buy-blue.c5c4f01c.svg",
+    "static/media/style.css": "/rewards_store/static/media/header-x2.cc65119a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4782d8a7.js",
+    "static/js/2.c758a59c.chunk.js",
+    "static/css/main.5f9627e7.chunk.css",
+    "static/js/main.0f00865e.chunk.js"
+  ]
+}
