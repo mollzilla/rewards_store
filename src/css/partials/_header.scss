@@ -43,3 +43,10 @@
     left: 133px;
   }
 }
+
+@media(max-width: 980px) {
+  .header {
+    background-size: cover;
+    background-position: 100% 0;
+  }
+}

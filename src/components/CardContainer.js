@@ -9,10 +9,13 @@ import { AppContext } from "../ContextProvider";
 function CardContainer() {
 
   const { userData, setUserData } = useContext(AppContext);
-  const { productsData } = useContext(AppContext);
+  const { productsData, productsOrder } = useContext(AppContext);
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {setProducts(productsData)}, [productsData, products]);
+  useEffect(() => {
+    setProducts(productsData)
+    }, 
+    [productsData, products]);
 
   return (
     <>

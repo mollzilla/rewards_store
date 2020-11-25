@@ -10,8 +10,9 @@ function UserHeader(props) {
   // let variableHover;
   const { userData, setUserData } = useContext(AppContext);
   const [user, setUser] = useState({})
+
   useEffect(() => {setUser(userData)}, [userData, user]);
-console.log(user)
+
   return(
 
       <div className="user-header">

@@ -19,7 +19,7 @@ function ProductCard(props) {
       {user.points > cost ? 
         <img src={buyIcon} alt="buy-icon" className="buy-icon" />
         :
-      <div className="te-faltan"><p>Te faltan {cost-user.points}</p><img src={coin} alt="" srcset=""/> </div>
+      <div className="te-faltan"><p>Te faltan {cost-user.points}</p><img src={coin} alt="points-coin"/> </div>
       }
         <img src={img.url} alt=""/>
       <div className="text-box">

@@ -7,6 +7,7 @@ export default function AppProvider({ children }) {
     const[userData, setUserData] = useState({});
     const[productsData, setProductsData] = useState([]);
     const[loading, setLoading] = useState(false);
+    const [productsOrder, setProductsOrder] = useState("default")
   
     async function fetchUserData() {
 
@@ -49,12 +50,37 @@ export default function AppProvider({ children }) {
         }
       }
 
+      const handleProductsOrder = (e) => {
+        setProductsOrder(e.target.value);
+        console.log(e.target.value)
+      }
 
+      useEffect(() => {
+        let productsDataSorted=[...productsData];
+        switch (productsOrder) {
+          case  "highest":
+            productsDataSorted = (productsDataSorted.sort((a, b) => a.cost+b.cost));
+            console.log(productsDataSorted)
+            console.log(productsOrder)
+            break;
+          case "lowest": 
+            productsDataSorted = (productsDataSorted.sort((a, b) => a.cost-b.cost));
+            console.log(productsDataSorted)
+            console.log(productsOrder)
+            break;
+          default: {
+            productsDataSorted = (productsDataSorted.sort((a, b) => productsDataSorted.indexOf(a)-productsDataSorted.indexOf(b)));
+            console.log(productsOrder)
+            break;
+          }
+        }
+        setProductsData(productsDataSorted);
+      }, [productsOrder])
 
       useEffect(() => {setUserData(fetchUserData()); setProductsData(fetchProductsData())}, [])
 
   return (
-    <AppContext.Provider value={{loading, userData, productsData}}>
+    <AppContext.Provider value={{loading, userData, productsData, productsOrder, setProductsOrder, handleProductsOrder}}>
       {children}
     </AppContext.Provider>
   );
