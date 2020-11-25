@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Overlay from "./Overlay"
 import ProductCard from "./ProductCard"
+import AppProvider from "../ContextProvider";
+import { AppContext } from "../ContextProvider";
 
 
 function CardContainer() {
 
-  let cards=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+  const { userData, setUserData } = useContext(AppContext);
+  const { productsData } = useContext(AppContext);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {setProducts(productsData)}, [productsData, products])
+
   return (
     <>
-      <div  className="card-container">
-        <ProductCard />
+      <div className="card-container">
         {/* <Overlay /> */}
-        {cards.map(card => 
-          <ProductCard />
-          )}
-        {/* <ProductCard /> */}
+        {products.length && (products.map(product=>
+          <ProductCard product={product} key={product.id}/>
+        ))}
       </div>
     </>
   )
