@@ -61,3 +61,17 @@
   transition: transform .4s ease-in-out, opacity .6s ease-in-out;
 }
 
+.te-faltan {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  @include behave-horizontal;
+  justify-content: space-evenly;
+  height: 42px;
+  width: 142px;
+  background-color: $dark-gray-font;
+  opacity: 0.8;
+  border-radius: 100px;
+  @include word-bundle(.875rem, #FFF, 400, 42px);
+}
+

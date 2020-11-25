@@ -4,6 +4,7 @@ import { AppContext } from "./ContextProvider";
 
 import './css/style.css';
 
+import UserHeader from "./components/UserHeader"
 import Header from "./components/Header"
 import SearchBar from "./components/SearchBar"
 import CardContainer from "./components/CardContainer"
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <AppProvider>
         <div className="App">
+          <UserHeader />
           <Header />
           <SearchBar />
           <CardContainer />
