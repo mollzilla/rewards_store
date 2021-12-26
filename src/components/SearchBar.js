@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import AppProvider from "../ContextProvider";
-import { AppContext } from "../ContextProvider";
-
+import AppProvider from '../ContextProvider';
+import { AppContext } from '../ContextProvider';
 
 function SearchBar(props) {
-
   let pagination = true;
 
-  const {productsOrder, setProductsOrder, handleProductsOrder} = useContext(AppContext)
-  
+  const { productsOrder, setProductsOrder, handleProductsOrder } = useContext(AppContext);
 
   return (
     <>
@@ -18,16 +15,21 @@ function SearchBar(props) {
         </div>
         <div className="sort">Sort by:</div>
         <div className="buttons">
-          <button value={"recent"} onClick={handleProductsOrder}>Most recent</button>
-          <button value={"lowest"} onClick={handleProductsOrder}>Lowest Price</button>
-          <button value={"highest"} onClick={handleProductsOrder}>Highest Price</button>
+          <button value={'recent'} onClick={handleProductsOrder}>
+            Most recent
+          </button>
+          <button value={'lowest'} onClick={handleProductsOrder}>
+            Lowest Price
+          </button>
+          <button value={'highest'} onClick={handleProductsOrder}>
+            Highest Price
+          </button>
         </div>
         <button className="next-page">&gt;</button>
-        {pagination &&
-          <button className="next-page">&lt;</button>}
+        {pagination && <button className="next-page">&lt;</button>}
       </div>
     </>
-  )
+  );
 }
 
 export default SearchBar;

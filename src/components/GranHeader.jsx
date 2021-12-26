@@ -12,4 +12,3 @@
 // un componente overlay para la funcion de redimir
 
 // la misma barra reciclada pero sacarle o ponerle los botones
-

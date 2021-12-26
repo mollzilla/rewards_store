@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-
 function Header() {
-
-  return(
+  return (
     <>
       <div className="header">
         <h2>Electronics</h2>
       </div>
     </>
-  )
+  );
 }
 
 export default Header;

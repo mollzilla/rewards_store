@@ -1,56 +1,70 @@
-// import { ar } from "date-fns/locale";
-// import react from "react";
+import { ar } from 'date-fns/locale';
+import react from 'react';
 
+export class User {
+  // static async moreCoins(amountCoins) {
 
-// function moreCoins() {
+  // params = {
+  //   body: { amount: amountCoins},
+  //   method: "post",
+  //   mode: "cors"
+  // }
 
+  //  Lo fundamental que te puedo tirar de los gets y post, más allá del tutorial de acámica es:
+  // En los get, al fetch pasale {headers}, no te olvides de las llaves.
+  // Y en los post, al Body ponele: JSON.stringify(elBonitoObjetoQueSea)
 
-//   const getCoins = async(userCoins) => {
-  // let response = await fetch("https://coding-challenge-api.aerolab.co/user/points", params );
+  static getCoins = async (userCoins) => {
+    const params = {
+      // body: { amount: amountCoins},
+      method: 'post',
+      mode: 'cors',
+    };
 
-//     const headers = {
-//       "Content Type": "application/json",
-//       Authorization: "Bearer <token>"
-//     }
+    const getParams = {
+      // body: { amount: amountCoins},
+      method: 'get',
+      mode: 'cors',
+    };
 
-//     const parameters = {
-//       body: { amount: amountCoins},
-//       method: "post",
-//       mode: "cors"
-//     }
+    // const url = new URL()
 
-//     try {
-//       let response=await fetch();
-//       if(response.status!==200)
-//         throw new Error("Invalid Response");
+    let response = await fetch('https://coding-challenge-api.aerolab.co/user/points', params);
 
-//       response=await response.json();
-//       alert(`Added ${response["New Points"]} coins`)
-//     } catch {
-//       console.log(error);
-//       alert("Lo sentimos, la operación no pudo realizarse");
-//     }
-//   } 
-// }
+    const headers = {
+      'Content Type': 'application/json',
+      Authorization: 'Bearer <token>',
+    };
 
-// /* volver a traer el usuario luego de agreagar monedas */
+    try {
+      let coinsResponse = await response;
+      if (coinsResponse.status !== 200) throw new Error('Invalid Response');
 
+      coinsResponse = await coinsResponse.json();
+      alert(`Added ${response['New Points']} coins`);
+    } catch (error) {
+      console.log(error);
+      alert('Lo sentimos, la operación no pudo realizarse');
+    }
+    // }
+  };
 
-// gets, hay que pasarle el objeto headers, encerrarlo en un objeto
+  // /* volver a traer el usuario luego de agreagar monedas */
 
-// para los metodos post
+  // gets, hay que pasarle el objeto headers, encerrarlo en un objeto
 
-async function traer() {
-const params = {
-method: "post",
-mode: "cors",
-headers: "algo de headers",
-body: JSON. stringify({amount: "tantos"}) // ESTO SOLUCIONA EL PROBLEMA DE LOS POST
+  // para los metodos post
+
+  async traer() {
+    const params = {
+      method: 'post',
+      mode: 'cors',
+      headers: 'algo de headers',
+      body: JSON.stringify({ amount: 'tantos' }), // ESTO SOLUCIONA EL PROBLEMA DE LOS POST
+    };
+    let url = '';
+    let resp = await fetch(url, params);
+  }
+
+  // hacer una clase y tener metodos abstractos que poder usar
 }
-let url="";
-let resp = await fetch(url, params)
-
-}
-
-
-// hacer una clase y tener metodos abstractos que poder usar

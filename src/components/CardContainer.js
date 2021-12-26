@@ -1,32 +1,33 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Overlay from "./Overlay"
-import ProductCard from "./ProductCard"
-import UserHeader from "./UserHeader"
-import AppProvider from "../ContextProvider";
-import { AppContext } from "../ContextProvider";
+import Overlay from './Overlay';
+import ProductCard from './ProductCard';
+import UserHeader from './UserHeader';
+import TransactionResultModal from './TransactionResultModal';
+import AppProvider from '../ContextProvider';
+import { AppContext } from '../ContextProvider';
 
+// https://fontawesome.com/
 
 function CardContainer() {
-
   const { userData, setUserData } = useContext(AppContext);
   const { productsData, productsOrder } = useContext(AppContext);
   const [products, setProducts] = useState([]);
 
+  let success = true;
+
   useEffect(() => {
-    setProducts(productsData)
-    }, 
-    [productsData, products]);
+    setProducts(productsData);
+  }, [productsData, products]);
 
   return (
     <>
       <div className="card-container">
-        {/* <Overlay /> */}
-        {products.length && (products.map(product=>
-          <ProductCard {...product} key={product._id}/>
-        ))}
+        <Overlay />
+        <TransactionResultModal success={success} />
+        {products.length && products.map((product) => <ProductCard {...product} key={product._id} />)}
       </div>
     </>
-  )
+  );
 }
 
 export default CardContainer;
