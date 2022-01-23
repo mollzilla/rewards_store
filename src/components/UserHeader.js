@@ -1,3 +1,9 @@
+// TODO;
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import React, { useState, useEffect, useContext } from 'react';
 import AppProvider from '../ContextProvider';
 import { AppContext } from '../ContextProvider';
@@ -17,7 +23,6 @@ function UserHeader(props) {
   return (
     <div className="user-header">
       <div className="kite">
-        {' '}
         <img src={coin} alt="" />
       </div>
 
@@ -26,7 +31,6 @@ function UserHeader(props) {
         <div className="points-tag">
           <p>{user.points}</p>
           <div className="coin">
-            {' '}
             <img src={coin} alt="" />
           </div>
         </div>

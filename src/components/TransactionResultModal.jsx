@@ -1,3 +1,9 @@
+// TODO;
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSmileBeam, faFrownOpen } from '@fortawesome/free-solid-svg-icons';

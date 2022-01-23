@@ -1,3 +1,9 @@
+// TODO;
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import React, { useState, useEffect, useContext } from 'react';
 import Overlay from './Overlay';
 import buyIcon from '../assets/icons/buy-blue.svg';

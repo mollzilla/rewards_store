@@ -1,3 +1,9 @@
+// TODO;
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import React, { useState, useEffect } from 'react';
 import { User } from '../utils/user';
 
@@ -9,7 +15,7 @@ function Overlay(props) {
       <div>
         <h4>12.000</h4>
         <span>icon</span>
-        <button onClick={() => User.getCoins()}>Redeem now</button>
+        <button onClick={async () => User.getCoins()}>Redeem now</button>
       </div>
     </>
   );

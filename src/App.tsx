@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import AppProvider from './ContextProvider';
-import { AppContext } from './ContextProvider';
 
 import './css/style.css';
 

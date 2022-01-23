@@ -1,3 +1,8 @@
+// TODO;
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import { ar } from 'date-fns/locale';
 import react from 'react';
 
