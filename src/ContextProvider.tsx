@@ -2,16 +2,16 @@
 // TODO;
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
+import React, { useEffect, useState, useCallback, Dispatch, SetStateAction } from 'react';
+import { UserData, UserState } from './store/reducers/user';
+import { superFetchUserData } from './store/actions/user';
+import { useDispatch, useSelector } from 'react-redux';
 
-export type UserData = {
-  createDate?: string;
-  name?: string;
-  points?: number;
-  redeemHistory?: [];
-  _v?: number;
-  _id?: string;
+export const headers = {
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+  Authorization:
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ0MDk1MTI2ZjdkMjAwMjA0MTE0Y2IiLCJpYXQiOjE2MDc3MzE1Mzd9.WOlVuhewUC0y9yaa4zkKnq9oO_0ck3zvegsPbAwTWvE',
 };
 
 type ContextState = {
@@ -19,6 +19,8 @@ type ContextState = {
   productsData: any;
   loading: any;
   productsOrder: any;
+  setProductsOrder?: Dispatch<SetStateAction<string>>;
+  handleProductsOrder?: Dispatch<SetStateAction<string>>;
 };
 
 const defaultState = {
@@ -28,27 +30,22 @@ const defaultState = {
   productsOrder: 'default',
 };
 
-import React, { useEffect, useState, useCallback } from 'react';
-
 export const AppContext = React.createContext<ContextState>(defaultState);
 
-export default function AppProvider({ children }) {
+export default function AppProvider({ children }: { children: any }) {
+  const superUserDataState = useSelector((state: { user: UserState }) => state);
   const [userData, setUserData] = useState<UserData>({});
   const [productsData, setProductsData] = useState(['']);
   const [loading, setLoading] = useState(false);
   const [productsOrder, setProductsOrder] = useState('default');
+  const dispatch = useDispatch();
+
+  console.log(superUserDataState.user);
 
   const fetchUserData = useCallback(async () => {
     setLoading(true);
 
     try {
-      const headers = {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ0MDk1MTI2ZjdkMjAwMjA0MTE0Y2IiLCJpYXQiOjE2MDc3MzE1Mzd9.WOlVuhewUC0y9yaa4zkKnq9oO_0ck3zvegsPbAwTWvE',
-      };
-
       const resp = await fetch('https://coding-challenge-api.aerolab.co/user/me', { headers });
       const fetchedUserData = await resp.json();
       setUserData(fetchedUserData);
@@ -62,13 +59,6 @@ export default function AppProvider({ children }) {
   const fetchProductsData = useCallback(async () => {
     setLoading(true);
     try {
-      const headers = {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWRkOWU5OTQ0NGZlNDAwNmRhOTkyNGQiLCJpYXQiOjE1OTE1ODIzNjF9.-f40dyUIGFsBSB_PTeBGdSLI58I21-QBJNi9wkODcKk', //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFjMjQ0OWI5NTIzZTAwMjA3ZTFmYzMiLCJpYXQiOjE2MDUxMTcwMDF9.vHMYlEKnpSVDSejVVyittmqUhIQ9pbD2U5CvqwQYJ4I",
-      };
-
       const resp = await fetch('https://coding-challenge-api.aerolab.co/products', { headers });
       const fetchedProductsData = await resp.json();
       setProductsData(fetchedProductsData);
@@ -79,7 +69,7 @@ export default function AppProvider({ children }) {
     }
   }, [userData]);
 
-  const handleProductsOrder = (e) => {
+  const handleProductsOrder = (e: any) => {
     setProductsOrder(e.target.value);
     console.log(e.target.value);
   };
@@ -116,12 +106,21 @@ export default function AppProvider({ children }) {
   //   setProductsData(productsDataSorted);
   // }, [productsData, productsOrder]);
 
+  const getStuff = useCallback(() => {
+    return async () => {
+      console.log('get stuff');
+      await fetchUserData();
+      await fetchProductsData();
+      await dispatch(superFetchUserData());
+    };
+  }, [dispatch, fetchUserData, fetchProductsData]);
+
   useEffect(() => {
-    setUserData(fetchUserData());
-    setProductsData(fetchProductsData());
+    dispatch(getStuff());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(userData);
   return (
     <AppContext.Provider
       value={{ loading, userData, productsData, productsOrder, setProductsOrder, handleProductsOrder }}

@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import Overlay from './Overlay';
 import buyIcon from '../assets/icons/buy-blue.svg';
-import { AppContext, UserData } from '../ContextProvider';
+import { AppContext } from '../ContextProvider';
 import coin from '../assets/icons/coin.svg';
+import { UserData } from '../store/reducers/user';
 
 export type ProductCardProps = {
   _id: string;
@@ -25,7 +26,7 @@ function ProductCard({ _id, category, cost, img, name }: ProductCardProps) {
   }, [userData, user]);
 
   if (user?.points === undefined) {
-    return;
+    return <></>;
   }
 
   return (
