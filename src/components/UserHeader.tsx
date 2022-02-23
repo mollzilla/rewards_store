@@ -4,22 +4,17 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import React, { useState, useEffect, useContext } from 'react';
-import AppProvider from '../ContextProvider';
-import { AppContext } from '../ContextProvider';
+import { UserState } from './store/reducers/user';
+import { useSelector } from 'react-redux';
+
 import coin from '../assets/icons/coin.svg';
 
 // import buyIcon from "../assets/icons/buy-blue.svg";
 
-function UserHeader(props) {
+export default function UserHeader() {
+  const { name, points } = useSelector((state: { user: UserState }) => state.user.user);
+
   // let variableHover;
-  const { userData, setUserData } = useContext(AppContext);
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    setUser(userData);
-  }, [userData, user]);
-
   return (
     <div className="user-header">
       <div className="kite">
@@ -27,9 +22,9 @@ function UserHeader(props) {
       </div>
 
       <div className="right">
-        <p>{user.name}</p>
+        <p>{name}</p>
         <div className="points-tag">
-          <p>{user.points}</p>
+          <p>{points}</p>
           <div className="coin">
             <img src={coin} alt="" />
           </div>
@@ -38,5 +33,3 @@ function UserHeader(props) {
     </div>
   );
 }
-
-export default UserHeader;
