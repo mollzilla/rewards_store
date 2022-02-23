@@ -6,16 +6,9 @@ import { UserData } from '../reducers/user';
 import { State } from '..';
 import { fetcher } from './fetcher';
 
-const headers = {
-  'Content-Type': 'application/json',
-  Accept: 'application/json',
-  Authorization:
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ0MDk1MTI2ZjdkMjAwMjA0MTE0Y2IiLCJpYXQiOjE2MDc3MzE1Mzd9.WOlVuhewUC0y9yaa4zkKnq9oO_0ck3zvegsPbAwTWvE',
-};
-
 export function superFetchUserData(): ThunkAction<Promise<void>, State, unknown, AnyAction> {
   return async (dispatch) => {
-    const options = { headers, url: 'https://coding-challenge-api.aerolab.co/user/me' };
+    const options = { url: 'https://coding-challenge-api.aerolab.co/user/me' };
     try {
       console.log('superfetchuserdata');
       const fetchedUserData = await dispatch(fetcher<UserData>(options));
@@ -29,7 +22,7 @@ export function superFetchUserData(): ThunkAction<Promise<void>, State, unknown,
 
 export function superFetchProductsData(): ThunkAction<Promise<void>, State, unknown, AnyAction> {
   return async (dispatch) => {
-    const options = { headers, url: 'https://coding-challenge-api.aerolab.co/products' };
+    const options = { url: 'https://coding-challenge-api.aerolab.co/products' };
 
     try {
       const fetchedProductsData = await dispatch(fetcher<ProductsData[]>(options));

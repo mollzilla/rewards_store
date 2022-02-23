@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Overlay from './Overlay';
 import buyIcon from '../assets/icons/buy-blue.svg';
-import { AppContext } from '../ContextProvider';
 import coin from '../assets/icons/coin.svg';
-import { UserData } from '../store/reducers/user';
+import { UserData, UserState } from '../store/reducers/user';
+import { useSelector } from 'react-redux';
 
 export type ProductCardProps = {
   _id: string;
@@ -18,8 +18,8 @@ export type ProductCardProps = {
 
 function ProductCard({ _id, category, cost, img, name }: ProductCardProps) {
   let variableHover;
+  const userData = useSelector((state: { user: UserState }) => state.user.user);
 
-  const { userData } = useContext(AppContext);
   const [user, setUser] = useState<UserData>({});
   useEffect(() => {
     setUser(userData);

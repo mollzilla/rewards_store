@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // TODO;
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState, useCallback, Dispatch, SetStateAction } from 'react';
-import { UserData, UserState } from './store/reducers/user';
 import { superFetchProductsData, superFetchUserData } from './store/actions/functions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export const headers = {
   'Content-Type': 'application/json',
@@ -15,43 +13,20 @@ export const headers = {
 };
 
 type ContextState = {
-  userData: UserData;
-  productsData: any;
-  loading: any;
   productsOrder: any;
   setProductsOrder?: Dispatch<SetStateAction<string>>;
   handleProductsOrder?: Dispatch<SetStateAction<string>>;
 };
 
 const defaultState = {
-  userData: {},
-  productsData: [''],
-  loading: false,
   productsOrder: 'default',
 };
 
 export const AppContext = React.createContext<ContextState>(defaultState);
 
 export default function AppProvider({ children }: { children: any }) {
-  const superUserDataState = useSelector((state: { user: UserState }) => state.user.user);
-  const [productsData, setProductsData] = useState(['']);
-  const [loading, setLoading] = useState(false);
   const [productsOrder, setProductsOrder] = useState('default');
   const dispatch = useDispatch();
-
-  const fetchProductsData = useCallback(async () => {
-    setLoading(true);
-    try {
-      const resp = await fetch('https://coding-challenge-api.aerolab.co/products', { headers });
-      const fetchedProductsData = await resp.json();
-      setProductsData(fetchedProductsData);
-      setLoading(false);
-      console.log(productsData);
-      return productsData;
-    } catch (error) {
-      console.log(error);
-    }
-  }, [productsData]);
 
   const handleProductsOrder = (e: any) => {
     setProductsOrder(e.target.value);
@@ -93,11 +68,10 @@ export default function AppProvider({ children }: { children: any }) {
   const getStuff = useCallback(() => {
     return async () => {
       console.log('get stuff');
-      await fetchProductsData();
       await dispatch(superFetchUserData());
       await dispatch(superFetchProductsData());
     };
-  }, [dispatch, fetchProductsData]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getStuff());
@@ -107,9 +81,6 @@ export default function AppProvider({ children }: { children: any }) {
   return (
     <AppContext.Provider
       value={{
-        loading,
-        userData: superUserDataState,
-        productsData,
         productsOrder,
         setProductsOrder,
         handleProductsOrder,

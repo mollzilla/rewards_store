@@ -1,10 +1,4 @@
-// TODO;
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-
-import { UserState } from './store/reducers/user';
+import { UserState } from '../store/reducers/user';
 import { useSelector } from 'react-redux';
 
 import coin from '../assets/icons/coin.svg';
