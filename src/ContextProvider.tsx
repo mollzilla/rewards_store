@@ -33,38 +33,6 @@ export default function AppProvider({ children }: { children: any }) {
     console.log(e.target.value);
   };
 
-  /* ademas hacer un filter ???*/
-
-  // useEffect(() => {
-  //   let productsDataSorted = [...productsData];
-  //   switch (productsOrder) {
-  //     case 'highest':
-  //       productsDataSorted = productsDataSorted.sort((a, b) => a.cost + b.cost);
-  //       console.log(productsDataSorted);
-  //       console.log(productsOrder);
-  //       break;
-  //     case 'lowest':
-  //       productsDataSorted = productsDataSorted.sort((a, b) => a.cost - b.cost);
-  //       console.log(productsDataSorted);
-  //       console.log(productsOrder);
-  //       break;
-  //     case 'recent':
-  //       productsDataSorted = productsDataSorted.sort((a, b) => a._id - b._id);
-  //       console.log(productsDataSorted[0].id);
-  //       console.log(productsOrder);
-  //       console.log('e;fwoiawhfe;ksdnf;asdklfn');
-  //       break;
-  //     default: {
-  //       productsDataSorted = productsDataSorted.sort(
-  //         (a, b) => productsDataSorted.indexOf(a) - productsDataSorted.indexOf(b)
-  //       );
-  //       console.log(productsOrder);
-  //       break;
-  //     }
-  //   }
-  //   setProductsData(productsDataSorted);
-  // }, [productsData, productsOrder]);
-
   const getStuff = useCallback(() => {
     return async () => {
       console.log('get stuff');

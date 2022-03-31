@@ -9,7 +9,7 @@ export interface State {
   products: ProductsState;
 }
 
-const store = createStore<State, AnyAction, unknown, unknown>(
+export const store = createStore<State, AnyAction, unknown, unknown>(
   combineReducers<State>({
     user: userReducer,
     products: productsReducer,
