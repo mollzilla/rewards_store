@@ -7,6 +7,8 @@ import { UserData } from '../reducers/user';
 import { State } from '..';
 import { fetcher } from './fetcher';
 
+export const PRODS_PER_PAGE = 16;
+
 export function superFetchUserData(): ThunkAction<Promise<void>, State, unknown, AnyAction> {
   return async (dispatch) => {
     const options = { url: 'https://coding-challenge-api.aerolab.co/user/me' };

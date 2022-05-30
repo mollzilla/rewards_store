@@ -9,9 +9,9 @@ export type ProductsData = {
   _id: string;
 };
 
-export type ProductsState = { products: ProductsData[] };
+export type ProductsState = { products: ProductsData[]; total: number; currentPage: number };
 
-const initialState: ProductsState = { products: [] };
+const initialState: ProductsState = { products: [], total: 0, currentPage: 1 };
 
 export default function productsReducer(state = initialState, action: Actions): ProductsState {
   switch (action.type) {
@@ -19,6 +19,13 @@ export default function productsReducer(state = initialState, action: Actions): 
       return {
         ...state,
         products: action.payload,
+        total: action.payload.length,
+        currentPage: 1,
+      };
+    case ACTION_TYPE.SET_PAGINATION:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
     default:
       return state;

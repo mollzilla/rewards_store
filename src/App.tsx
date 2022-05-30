@@ -1,4 +1,3 @@
-import AppProvider from './ContextProvider';
 import './css/style.css';
 import UserHeader from './components/UserHeader';
 import Header from './components/Header';
@@ -13,15 +12,13 @@ function App() {
 
   return (
     <Provider store={store}>
-      <AppProvider>
-        <div className="App">
-          <UserHeader />
-          <Header />
-          <SearchBar />
-          <CardContainer />
-          <Footer />
-        </div>
-      </AppProvider>
+      <div className="App">
+        <UserHeader />
+        <Header />
+        <SearchBar />
+        <CardContainer />
+        <Footer />
+      </div>
     </Provider>
   );
 }

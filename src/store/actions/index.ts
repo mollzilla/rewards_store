@@ -6,6 +6,7 @@ export enum ACTION_TYPE {
   USER_FAIL,
   SET_PRODUCTS,
   PRODUCTS_FAIL,
+  SET_PAGINATION,
 }
 
 export type Actions =
@@ -22,4 +23,8 @@ export type Actions =
     }
   | {
       type: ACTION_TYPE.PRODUCTS_FAIL;
+    }
+  | {
+      type: ACTION_TYPE.SET_PAGINATION;
+      payload: number;
     };
