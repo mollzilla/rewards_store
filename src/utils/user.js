@@ -70,6 +70,4 @@ export class User {
     let url = '';
     let resp = await fetch(url, params);
   }
-
-  // hacer una clase y tener metodos abstractos que poder usar
 }

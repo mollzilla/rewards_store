@@ -6,6 +6,7 @@ import { ThunkAction } from 'redux-thunk';
 import { UserData } from '../reducers/user';
 import { State } from '..';
 import { fetcher } from './fetcher';
+import { Method } from 'axios';
 
 export const PRODS_PER_PAGE = 16;
 
@@ -33,6 +34,27 @@ export function superFetchProductsData(): ThunkAction<Promise<void>, State, unkn
     } catch (e) {
       console.log(e);
       dispatch({ type: ACTION_TYPE.PRODUCTS_FAIL });
+    }
+  };
+}
+
+export function superGetpoints(amount: 1000 | 5000 | 7500): ThunkAction<Promise<void>, State, unknown, AnyAction> {
+  return async (dispatch) => {
+    const method: Method = 'POST';
+
+    const options = {
+      url: 'https://coding-challenge-api.aerolab.co/user/points',
+      method,
+      data: { amount },
+    };
+
+    try {
+      const pointsResponse = await dispatch(fetcher(options));
+      console.log(pointsResponse);
+      // dispatch({ type: ACTION_TYPE.SET_PRODUCTS, payload: fetchedProductsData });
+    } catch (e) {
+      console.log(e);
+      // dispatch({ type: ACTION_TYPE.PRODUCTS_FAIL });
     }
   };
 }

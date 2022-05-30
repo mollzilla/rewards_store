@@ -23,7 +23,6 @@ function ProductCard({ _id, category, cost, img, name }: ProductCardProps) {
     return <></>;
   }
 
-  console.log(userData);
   return (
     <div className="product-card" key={_id}>
       {userData?.points > cost ? (
