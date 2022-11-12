@@ -20,7 +20,7 @@ function ProductCard({ _id, category, cost, img, name }: ProductCardProps) {
   const userData = useSelector((state: { user: UserState }) => state.user.user);
 
   if (!userData?.points) {
-    return <></>;
+    return null;
   }
 
   return (
