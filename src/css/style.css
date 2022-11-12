@@ -14,7 +14,7 @@ body {
 
 .user-header {
   height: 80px;
-  background-color: #FFF;
+  background-color: #fff;
   font-size: 1.5rem;
   color: #616161;
   font-weight: 400;
@@ -54,7 +54,7 @@ body {
           align-items: center;
 }
 
-.user-header .points-tag {
+.user-header .header-button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -76,6 +76,10 @@ body {
   margin-left: 24px;
 }
 
+.user-header .more {
+  cursor: pointer;
+}
+
 .user-header img {
   -webkit-transform: translateY(25%);
           transform: translateY(25%);
@@ -95,7 +99,7 @@ body {
 
 .header h2 {
   font-size: 4rem;
-  color: #FFF;
+  color: #fff;
   font-weight: 700;
   line-height: 1.5rem;
   position: absolute;

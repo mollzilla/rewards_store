@@ -1,6 +1,6 @@
 .user-header {
   height: 80px;
-  background-color: #FFF;
+  background-color: #fff;
   @include word-bundle(1.5rem, $dark-gray-font, 400, 3rem);
   @include behave-horizontal;
   justify-content: space-between;
@@ -10,14 +10,18 @@
     @include behave-horizontal;
   }
 
-  .points-tag {
+  .header-button {
     @include behave-horizontal;
-      height: 48px;
-      padding: 1px 24px;
-      background-color: $light-gray-background;
-      border: 0;
-      border-radius: 20.5px;
-      margin-left: 24px;
+    height: 48px;
+    padding: 1px 24px;
+    background-color: $light-gray-background;
+    border: 0;
+    border-radius: 20.5px;
+    margin-left: 24px;
+  }
+
+  .more {
+    cursor: pointer;
   }
 
   img {
@@ -30,21 +34,21 @@
 }
 
 .header {
-  background-image: url("../assets/header-x2.png");
+  background-image: url('../assets/header-x2.png');
   height: 400px;
   background-size: 100%;
   background-repeat: no-repeat;
   position: relative;
 
   h2 {
-    @include word-bundle(4rem, #FFF, 700, 1.5rem);
+    @include word-bundle(4rem, #fff, 700, 1.5rem);
     position: absolute;
     bottom: 115px;
     left: 133px;
   }
 }
 
-@media(max-width: 980px) {
+@media (max-width: 980px) {
   .header {
     background-size: cover;
     background-position: 100% 0;
