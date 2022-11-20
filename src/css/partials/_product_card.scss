@@ -2,16 +2,16 @@
   @include behave-vertical;
   position: relative;
   justify-content: flex-end;
-  background-color: #FFF;
+  background-color: #fff;
   height: 276px;
   width: 276px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 
   h4 {
-    @include word-bundle(1rem, $light-gray-font,400, 1.256875rem);
+    @include word-bundle(1rem, $light-gray-font, 400, 1.256875rem);
   }
 
-  h3  {
+  h3 {
     @include word-bundle(1.125rem, $dark-gray-font, 400, 1.414375rem);
   }
 }
@@ -21,6 +21,7 @@
   position: absolute;
   top: 12px;
   right: 12px;
+  cursor: pointer;
 }
 
 .text-box {
@@ -44,21 +45,36 @@
 
   &:hover {
     .overlay {
-      transform: translate(0,0);
+      transform: translate(0, 0);
       opacity: 1;
     }
   }
 }
 
 .overlay {
-  display: none;
   @include right-on-top;
-  height: 100%;
+
+  height: 100vh;
   width: 100%;
-  background-color: transparentize(#572EE5, .3);
-  transform: translate(-100%, -100%);
-  opacity: 0;
-  transition: transform .4s ease-in-out, opacity .6s ease-in-out;
+  background-color: transparentize(#572ee5, 0.6);
+  // transform: translate(-100%, -100%);
+  // opacity: 0;
+  // transition: transform 0.4s ease-in-out, opacity 0.6s ease-in-out;
+
+  .modal {
+    position: absolute;
+    @include magic-center;
+    background-color: #fff;
+    padding: 40px;
+    @include behave-vertical;
+    gap: 24px;
+    border-radius: 25px;
+    .overlay-ok {
+      padding: 4px 16px;
+      @include fancy-button;
+      @include word-bundle(1.25rem, #000, 400, 42px);
+    }
+  }
 }
 
 .te-faltan {
@@ -72,6 +88,5 @@
   background-color: $dark-gray-font;
   opacity: 0.8;
   border-radius: 100px;
-  @include word-bundle(.875rem, #FFF, 400, 42px);
+  @include word-bundle(0.875rem, #fff, 400, 42px);
 }
-

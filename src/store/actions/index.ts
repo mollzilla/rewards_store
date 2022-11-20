@@ -7,6 +7,7 @@ export enum ACTION_TYPE {
   SET_PRODUCTS,
   PRODUCTS_FAIL,
   SET_PAGINATION,
+  SET_REDEEM_RESULT,
 }
 
 export type Actions =
@@ -27,4 +28,8 @@ export type Actions =
   | {
       type: ACTION_TYPE.SET_PAGINATION;
       payload: number;
+    }
+  | {
+      type: ACTION_TYPE.SET_REDEEM_RESULT;
+      payload: { message: string; status: 'success' | 'error' };
     };

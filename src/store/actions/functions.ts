@@ -6,7 +6,7 @@ import { ThunkAction } from 'redux-thunk';
 import { UserData } from '../reducers/user';
 import { State } from '..';
 import { fetcher } from './fetcher';
-import { Method } from 'axios';
+import { Method, AxiosRequestConfig, AxiosError } from 'axios';
 
 export const PRODS_PER_PAGE = 16;
 
@@ -49,12 +49,10 @@ export function superGetpoints(amount: 1000 | 5000 | 7500): ThunkAction<Promise<
     };
 
     try {
-      const pointsResponse = await dispatch(fetcher(options));
-      console.log(pointsResponse);
-      // dispatch({ type: ACTION_TYPE.SET_PRODUCTS, payload: fetchedProductsData });
+      await dispatch(fetcher(options));
+      await dispatch(superFetchUserData());
     } catch (e) {
       console.log(e);
-      // dispatch({ type: ACTION_TYPE.PRODUCTS_FAIL });
     }
   };
 }
@@ -94,5 +92,52 @@ export function sortProducts(order: PRODUCT_ORDER_CRITERIA): ThunkAction<Promise
     }
 
     dispatch({ type: ACTION_TYPE.SET_PRODUCTS, payload });
+  };
+}
+export function gotoNextPage(): ThunkAction<Promise<void>, State, unknown, AnyAction> {
+  return async (dispatch) => {
+    const {
+      products: { currentPage, totalPages },
+    } = store.getState();
+    if (currentPage === totalPages) return;
+    dispatch({ type: ACTION_TYPE.SET_PAGINATION, payload: currentPage + 1 });
+  };
+}
+
+export function gotoPrevPage(): ThunkAction<Promise<void>, State, unknown, AnyAction> {
+  return async (dispatch) => {
+    const {
+      products: { currentPage },
+    } = store.getState();
+    if (currentPage === 1) return;
+    dispatch({ type: ACTION_TYPE.SET_PAGINATION, payload: currentPage - 1 });
+  };
+}
+
+export function redeem(productId: ProductsData['_id']): ThunkAction<Promise<void>, State, unknown, AnyAction> {
+  return async (dispatch) => {
+    const options: AxiosRequestConfig = {
+      url: 'https://coding-challenge-api.aerolab.co/redeem',
+      method: 'POST',
+      data: { productId },
+    };
+
+    try {
+      const redeemResult = await dispatch(fetcher<{ message: string }>(options));
+      await dispatch(superFetchUserData());
+      dispatch({ type: ACTION_TYPE.SET_REDEEM_RESULT, payload: { status: 'success', message: redeemResult.message } });
+    } catch (e) {
+      const error = e as AxiosError;
+      dispatch({
+        type: ACTION_TYPE.SET_REDEEM_RESULT,
+        payload: { status: 'error', message: error.response?.data.error },
+      });
+    }
+  };
+}
+
+export function clearRedeemResult(): ThunkAction<Promise<void>, State, unknown, AnyAction> {
+  return async (dispatch) => {
+    dispatch({ type: ACTION_TYPE.SET_REDEEM_RESULT, payload: null });
   };
 }

@@ -5,7 +5,6 @@ import { State } from '..';
 
 export function fetcher<T>(options: AxiosRequestConfig): ThunkAction<Promise<T>, State, unknown, AnyAction> {
   return async () => {
-    console.log(options);
     const res = await axios.request<
       unknown,
       {

@@ -5,9 +5,11 @@ import { ProductsState } from '../store/reducers/products';
 import { useDispatch } from 'react-redux';
 import { superFetchProductsData, superFetchUserData } from '../store/actions/functions';
 import { PRODS_PER_PAGE } from '../store/actions/functions';
+import Overlay from './Overlay';
 
 function CardContainer() {
   const dispatch = useDispatch();
+  const redeemResult = useSelector((state: { products: ProductsState }) => state.products.redeemResult);
 
   const getStuff = useCallback(() => {
     return async () => {
@@ -31,7 +33,8 @@ function CardContainer() {
 
   return (
     <div className="card-container">
-      {products.length && products.map((product) => <ProductCard {...product} key={product._id} />)}
+      {products.length ? products.map((product) => <ProductCard {...product} key={product._id} />) : null}
+      {redeemResult && <Overlay />}
     </div>
   );
 }

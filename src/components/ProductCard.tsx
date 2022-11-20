@@ -1,8 +1,9 @@
-import Overlay from './Overlay';
 import buyIcon from '../assets/icons/buy-blue.svg';
 import coin from '../assets/icons/coin.svg';
 import { UserState } from '../store/reducers/user';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { redeem } from '../store/actions/functions';
+import { useCallback } from 'react';
 
 export type ProductCardProps = {
   _id: string;
@@ -15,18 +16,22 @@ export type ProductCardProps = {
   name: string;
 };
 
-function ProductCard({ _id, category, cost, img, name }: ProductCardProps) {
-  let variableHover;
+export default function ProductCard({ _id, category, cost, img, name }: ProductCardProps) {
   const userData = useSelector((state: { user: UserState }) => state.user.user);
+  const dispatch = useDispatch();
 
-  if (!userData?.points) {
+  const handleRedeemClick = useCallback(() => {
+    void dispatch(redeem(_id));
+  }, [dispatch, _id]);
+
+  if (userData.points === undefined) {
     return null;
   }
 
   return (
     <div className="product-card" key={_id}>
-      {userData?.points > cost ? (
-        <button onClick={() => console.log('click' + name)}>
+      {userData?.points >= cost ? (
+        <button onClick={handleRedeemClick}>
           <img src={buyIcon} alt="buy-icon" className="buy-icon" />
         </button>
       ) : (
@@ -40,28 +45,6 @@ function ProductCard({ _id, category, cost, img, name }: ProductCardProps) {
         <h4>{category}</h4>
         <h3>{name}</h3>
       </div>
-
-      {variableHover && <Overlay />}
     </div>
   );
-}
-
-export default ProductCard;
-
-{
-  /* <div style={{ height: '40px' }}>
-  <p
-    style={{
-      background: 'linear-gradient(to top, white 55%, transparent 50%)',
-      padding: '0 4px',
-      top: '-8px',
-      left: '9px',
-      fontSize: '12px',
-      color: 'rgba(0,0,0,0.6)',
-    }}
-  >
-    label
-  </p>
-  <div style={{ border: '1px solid black' }}></div>
-</div>; */
 }

@@ -1,10 +1,18 @@
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { PRODUCT_ORDER_CRITERIA, sortProducts } from '../store/actions/functions';
+import { useCallback, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  gotoNextPage,
+  gotoPrevPage,
+  PRODS_PER_PAGE,
+  PRODUCT_ORDER_CRITERIA,
+  sortProducts,
+} from '../store/actions/functions';
+import { ProductsState } from '../store/reducers/products';
 
 function SearchBar() {
   const dispatch = useDispatch();
-  const pagination = true;
+  const currentPage = useSelector((state: { products: ProductsState }) => state.products.currentPage);
+  const totalProducts = useSelector((state: { products: ProductsState }) => state.products.total);
 
   const handleGetProductsLow = useCallback(() => {
     dispatch(sortProducts(PRODUCT_ORDER_CRITERIA.LOWEST));
@@ -18,10 +26,24 @@ function SearchBar() {
     dispatch(sortProducts(PRODUCT_ORDER_CRITERIA.NEWEST));
   }, [dispatch]);
 
+  const onNext = useCallback(() => {
+    dispatch(gotoNextPage());
+  }, [dispatch]);
+
+  const onPrev = useCallback(() => {
+    dispatch(gotoPrevPage());
+  }, [dispatch]);
+
+  const legend = useMemo(() => {
+    const firstElement = (currentPage - 1) * PRODS_PER_PAGE;
+
+    return `${firstElement + 1} - ${firstElement + 16} of ${totalProducts} products`;
+  }, [currentPage, totalProducts]);
+
   return (
     <div className="search-bar">
       <div className="products-count">
-        <h4>16 of 32 products</h4>
+        <h4>{legend}</h4>
       </div>
       <div className="sort">Sort by:</div>
       <div className="buttons">
@@ -35,8 +57,12 @@ function SearchBar() {
           Highest Price
         </button>
       </div>
-      <button className="next-page">&gt;</button>
-      {pagination && <button className="next-page">&lt;</button>}
+      <button className="next-page" onClick={onPrev}>
+        &lt;
+      </button>
+      <button className="next-page" onClick={onNext}>
+        &gt;
+      </button>
     </div>
   );
 }

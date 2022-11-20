@@ -9,9 +9,15 @@ export type ProductsData = {
   _id: string;
 };
 
-export type ProductsState = { products: ProductsData[]; total: number; currentPage: number };
+export type ProductsState = {
+  products: ProductsData[];
+  total: number;
+  currentPage: number;
+  totalPages: number;
+  redeemResult: { status: 'success' | 'error'; message: string } | null;
+};
 
-const initialState: ProductsState = { products: [], total: 0, currentPage: 1 };
+const initialState: ProductsState = { products: [], total: 0, currentPage: 1, totalPages: 1, redeemResult: null };
 
 export default function productsReducer(state = initialState, action: Actions): ProductsState {
   switch (action.type) {
@@ -21,11 +27,17 @@ export default function productsReducer(state = initialState, action: Actions): 
         products: action.payload,
         total: action.payload.length,
         currentPage: 1,
+        totalPages: Math.ceil(action.payload.length / 16),
       };
     case ACTION_TYPE.SET_PAGINATION:
       return {
         ...state,
         currentPage: action.payload,
+      };
+    case ACTION_TYPE.SET_REDEEM_RESULT:
+      return {
+        ...state,
+        redeemResult: action.payload,
       };
     default:
       return state;

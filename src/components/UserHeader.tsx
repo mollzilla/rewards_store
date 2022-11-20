@@ -2,7 +2,7 @@ import { UserState } from '../store/reducers/user';
 import { useDispatch, useSelector } from 'react-redux';
 import coin from '../assets/icons/coin.svg';
 import { useCallback, useState } from 'react';
-import { superGetpoints, superFetchUserData } from '../store/actions/functions';
+import { superGetpoints } from '../store/actions/functions';
 
 // import buyIcon from "../assets/icons/buy-blue.svg";
 
@@ -15,13 +15,10 @@ export default function UserHeader() {
     async (requestedPoints: 1000 | 5000 | 7500) => {
       setPointsLoading(true);
       await dispatch(superGetpoints(requestedPoints));
-      await dispatch(superFetchUserData());
       setPointsLoading(false);
     },
     [dispatch]
   );
-
-  // let variableHover;
 
   return (
     <div className="user-header">
